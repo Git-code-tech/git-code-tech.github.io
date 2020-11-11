@@ -51,6 +51,14 @@
         function log() {
             //console.log("drawcircles");
         }
+        
+
+            function speech(txt) {
+            let synth = window.speechSynthesis;
+            let utterThis = new SpeechSynthesisUtterance(txt);
+            synth.speak(utterThis);
+            }
+                
 
         function drawcircles() {
 
@@ -67,6 +75,7 @@
             for (let sqr = 0; sqr < Squrs.length; sqr++) {
                 s.circle(Squrs[sqr].split(":")[0], Squrs[sqr].split(":")[1], Radious).attr({ "fill": "Red", "stroke": "green" });
             }
+            speech(NOOFCIRCLES);
             let t1 = performance.now();
             performanceResult("Drawcircles ", (t1 - t0));
         }
