@@ -14,8 +14,8 @@
         .vw {
             display:block;
             float:left;
-            width: 90%;
-            height: 90%;
+            min-width: 11in;
+            min-height: 11in;
             background-color:indianred;
             margin-left:10;
         }
@@ -24,7 +24,7 @@
 </head>
 <body style="margin:0;padding:0px;background-color:black;">
  <input type="button" id="btn_dc" onclick="start();" value=" Add Circle " class="btn-s btn-sm left" /><span id="number" style="font-size:xx-large;"></span>
-    <div class="container-fluid" style="background-color:yellow;padding:10px;">
+    <div class="container-fluid" style="background-color:yellow;padding-left:10px;padding-right:10px;">
         <div id="target" class="vw"></div>
     </div>
     <script>
@@ -34,6 +34,7 @@
           
             Y = Y-100;
             X = Y;
+            console.log(X,Y);
             var timetook = new Array();
             var matrix = new Array(X * Y);
             var Squrs = new Array();
