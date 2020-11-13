@@ -175,9 +175,10 @@
         function getcolors(){
           let rnd = getRndInteger(0,colors.length-1);
           let colorcode =  colors[rnd];
+          speech(colorcode.colorname);
           console.log("test "+rnd +","+JSON.stringify(colorcode));
             document.getElementById("target").style.backgroundColor  = colorcode.colorname;
-            speech(colorcode.colorname);
+          
         }
         
         function start() {
