@@ -25,7 +25,7 @@
 </head>
 <body style="margin:0;padding:0px;background-color:black;">
  <input type="button" id="btn_dc" onclick="start();" value=" Add Circle " class="btn-s btn-sm left" /><span id="number" style="font-size:xx-large;"></span>
-    <div class="container-fluid" style="background-color:yellow;padding-left:10px;padding-right:10px;">
+    <div class="container-fluid">
         <div id="target" class="vw"></div>
     </div>
     <script>
@@ -175,10 +175,10 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         function getcolors(){
-        let rnd = getRndInteger(0,colors.length-1);
-        let colorcode =  colors[rnd];
+          let rnd = getRndInteger(0,colors.length-1);
+          let colorcode =  colors[rnd];
           console.log("test "+rnd +","+JSON.stringify(colorcode));
-        document.getElementById("target").style.backgroundColor  = colorcode.colorname;
+            document.getElementById("target").style.backgroundColor  = colorcode.colorname;
         }
         
         function start() {
