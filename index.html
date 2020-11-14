@@ -25,19 +25,19 @@
 </head>
 <body style="margin:0;padding:0px;background-color:black;">
     <div class="container">
-  <div class="row">
-     
-       <div class="col-sm-11">
-       <input type="button" id="btn_dc" onclick="start();" value=" Add Circle " class="btn-s btn-sm left" />
-    <br/>
-     <input type="button" id="btn_size" onclick="showsize();" value="size " class="btn-s btn-sm left" />
-     <br/>
-    <span id="number" style="font-size:xx-large;"></span></div>
+        <div class="row">
+               <div class="col-sm-11">
+                  <input type="button" id="btn_dc" onclick="start();" value=" Add Circle " class="btn-s btn-sm left" />
+                    <br/>
+                    <input type="button" id="btn_size" onclick="showsize();" value="size " class="btn-s btn-sm left" />
+                    <br/>
+                    <span id="number" style="font-size:xx-large;"></span>
+              </div>
+              <div class="col-sm-11">
+                <div id="target" class="vw"></div>
+             </div>
         </div>
-        <div class="col-sm-11">
-        <div id="target" class="vw"></div></div>
-        </div>
-
+    </div>
     <script>
         var colors = [{ "colorname" : "Black","code":"#000000"}, { "colorname" : "Navy","code":"#000080"}, { "colorname" : "DarkBlue","code":"#00008B"}, { "colorname" : "MediumBlue","code":"#0000CD"}, { "colorname" : "Blue","code":"#0000FF"}, { "colorname" : "DarkGreen","code":"#006400"}, { "colorname" : "Green","code":"#008000"}, { "colorname" : "Teal","code":"#008080"}, { "colorname" : "DarkCyan","code":"#008B8B"}, { "colorname" : "DeepSkyBlue","code":"#00BFFF"}, { "colorname" : "DarkTurquoise","code":"#00CED1"}, { "colorname" : "MediumSpringGreen","code":"#00FA9A"}, { "colorname" : "Lime","code":"#00FF00"}, { "colorname" : "SpringGreen","code":"#00FF7F"}, { "colorname" : "Aqua","code":"#00FFFF"}, { "colorname" : "Cyan","code":"#00FFFF"}, { "colorname" : "MidnightBlue","code":"#191970"}, { "colorname" : "DodgerBlue","code":"#1E90FF"}, { "colorname" : "LightSeaGreen","code":"#20B2AA"}, { "colorname" : "ForestGreen","code":"#228B22"}, { "colorname" : "SeaGreen","code":"#2E8B57"}, { "colorname" : "DarkSlateGray","code":"#2F4F4F"}, { "colorname" : "LimeGreen","code":"#32CD32"}, { "colorname" : "MediumSeaGreen","code":"#3CB371"}, { "colorname" : "Turquoise","code":"#40E0D0"}, { "colorname" : "RoyalBlue","code":"#4169E1"}, { "colorname" : "SteelBlue","code":"#4682B4"}, { "colorname" : "DarkSlateBlue","code":"#483D8B"}, { "colorname" : "MediumTurquoise","code":"#48D1CC"}, { "colorname" : "Indigo","code":"#4B0082"}, { "colorname" : "DarkOliveGreen","code":"#556B2F"}, { "colorname" : "CadetBlue","code":"#5F9EA0"}, { "colorname" : "CornflowerBlue","code":"#6495ED"}, { "colorname" : "RebeccaPurple","code":"#663399"}, { "colorname" : "MediumAquamarine","code":"#66CDAA"}, { "colorname" : "DimGray","code":"#696969"}, { "colorname" : "SlateBlue","code":"#6A5ACD"}, { "colorname" : "OliveDrab","code":"#6B8E23"}, { "colorname" : "SlateGray","code":"#708090"}, { "colorname" : "LightSlateGray","code":"#778899"}, { "colorname" : "MediumSlateBlue","code":"#7B68EE"}, { "colorname" : "MediumSlateBlue","code":"#7B68EE"}, { "colorname" : "LawnGreen","code":"#7CFC00"}, { "colorname" : "Chartreuse","code":"#7FFF00"}, { "colorname" : "Aquamarine","code":"#7FFFD4"}, { "colorname" : "Maroon","code":"#800000"}, { "colorname" : "Purple","code":"#800080"}, { "colorname" : "Olive","code":"#808000"}, { "colorname" : "Gray","code":"#808080"}, { "colorname" : "SkyBlue","code":"#87CEEB"}, { "colorname" : "LightSkyBlue","code":"#87CEFA"}, { "colorname" : "BlueViolet","code":"#8A2BE2"}, { "colorname" : "DarkRed","code":"#8B0000"}, { "colorname" : "DarkMagenta","code":"#8B008B"}, { "colorname" : "SaddleBrown","code":"#8B4513"}, { "colorname" : "DarkSeaGreen","code":"#8FBC8B"}, { "colorname" : "LightGreen","code":"#90EE90"}, { "colorname" : "MediumPurple","code":"#9370DB"}, { "colorname" : "DarkViolet","code":"#9400D3"}, { "colorname" : "PaleGreen","code":"#98FB98"}, { "colorname" : "DarkOrchid","code":"#9932CC"}, { "colorname" : "YellowGreen","code":"#9ACD32"}, { "colorname" : "Sienna","code":"#A0522D"}, { "colorname" : "Brown","code":"#A52A2A"}, { "colorname" : "DarkGray","code":"#A9A9A9"}, { "colorname" : "LightBlue","code":"#ADD8E6"}, { "colorname" : "GreenYellow","code":"#ADFF2F"}, { "colorname" : "PaleTurquoise","code":"#AFEEEE"}, { "colorname" : "LightSteelBlue","code":"#B0C4DE"}, { "colorname" : "PowderBlue","code":"#B0E0E6"}, { "colorname" : "FireBrick","code":"#B22222"}, { "colorname" : "DarkGoldenrod","code":"#B8860B"}, { "colorname" : "MediumOrchid","code":"#BA55D3"}, { "colorname" : "RosyBrown","code":"#BC8F8F"}, { "colorname" : "DarkKhaki","code":"#BDB76B"}, { "colorname" : "Silver","code":"#C0C0C0"}, { "colorname" : "MediumVioletRed","code":"#C71585"}, { "colorname" : "IndianRed","code":"#CD5C5C"}, { "colorname" : "Peru","code":"#CD853F"}, { "colorname" : "Chocolate","code":"#D2691E"}, { "colorname" : "Tan","code":"#D2B48C"}, { "colorname" : "LightGray","code":"#D3D3D3"}, { "colorname" : "Thistle","code":"#D8BFD8"}, { "colorname" : "Orchid","code":"#DA70D6"}, { "colorname" : "Goldenrod","code":"#DAA520"}, { "colorname" : "PaleVioletRed","code":"#DB7093"}, { "colorname" : "Crimson","code":"#DC143C"}, { "colorname" : "Gainsboro","code":"#DCDCDC"}, { "colorname" : "Plum","code":"#DDA0DD"}, { "colorname" : "BurlyWood","code":"#DEB887"}, { "colorname" : "LightCyan","code":"#E0FFFF"}, { "colorname" : "Lavender","code":"#E6E6FA"}, { "colorname" : "DarkSalmon","code":"#E9967A"}, { "colorname" : "Violet","code":"#EE82EE"}, { "colorname" : "PaleGoldenrod","code":"#EEE8AA"}, { "colorname" : "LightCoral","code":"#F08080"}, { "colorname" : "Khaki","code":"#F0E68C"}, { "colorname" : "AliceBlue","code":"#F0F8FF"}, { "colorname" : "HoneyDew","code":"#F0FFF0"}, { "colorname" : "Azure","code":"#F0FFFF"}, { "colorname" : "SandyBrown","code":"#F4A460"}, { "colorname" : "Wheat","code":"#F5DEB3"}, { "colorname" : "Beige","code":"#F5F5DC"}, { "colorname" : "WhiteSmoke","code":"#F5F5F5"}, { "colorname" : "MintCream","code":"#F5FFFA"}, { "colorname" : "GhostWhite","code":"#F8F8FF"}, { "colorname" : "Salmon","code":"#FA8072"}, { "colorname" : "AntiqueWhite","code":"#FAEBD7"}, { "colorname" : "Linen","code":"#FAF0E6"}, { "colorname" : "LightGoldenrodYellow","code":"#FAFAD2"}, { "colorname" : "OldLace","code":"#FDF5E6"}, { "colorname" : "Red","code":"#FF0000"}, { "colorname" : "Fuchsia","code":"#FF00FF"}, { "colorname" : "Magenta","code":"#FF00FF"}, { "colorname" : "DeepPink","code":"#FF1493"}, { "colorname" : "OrangeRed","code":"#FF4500"}, { "colorname" : "Tomato","code":"#FF6347"}, { "colorname" : "HotPink","code":"#FF69B4"}, { "colorname" : "Coral","code":"#FF7F50"}, { "colorname" : "DarkOrange","code":"#FF8C00"}, { "colorname" : "LightSalmon","code":"#FFA07A"}, { "colorname" : "LightSalmon","code":"#FFA07A"}, { "colorname" : "Orange","code":"#FFA500"}, { "colorname" : "LightPink","code":"#FFB6C1"}, { "colorname" : "Pink","code":"#FFC0CB"}, { "colorname" : "Gold","code":"#FFD700"}, { "colorname" : "PeachPuff","code":"#FFDAB9"}, { "colorname" : "NavajoWhite","code":"#FFDEAD"}, { "colorname" : "Moccasin","code":"#FFE4B5"}, { "colorname" : "Bisque","code":"#FFE4C4"}, { "colorname" : "MistyRose","code":"#FFE4E1"}, { "colorname" : "BlanchedAlmond","code":"#FFEBCD"}, { "colorname" : "PapayaWhip","code":"#FFEFD5"}, { "colorname" : "LavenderBlush","code":"#FFF0F5"}, { "colorname" : "SeaShell","code":"#FFF5EE"}, { "colorname" : "Cornsilk","code":"#FFF8DC"}, { "colorname" : "LemonChiffon","code":"#FFFACD"}, { "colorname" : "FloralWhite","code":"#FFFAF0"}, { "colorname" : "Snow","code":"#FFFAFA"}, { "colorname" : "Yellow","code":"#FFFF00"}, { "colorname" : "LightYellow","code":"#FFFFE0"}, { "colorname" : "Ivory","code":"#FFFFF0"},
 { "colorname" : "White","code":"#FFFFFF"}];
@@ -211,7 +211,9 @@
             setInterval(drawcircles, 1000);
             }
         }
-
+        function showsize(){
+          console.log('[ ClientWidth - ' + document.documentElement.clientWidth + ' X ' +  X + '] [ clientHeight ' +   document.documentElement.clientHeight  + ' Y - ' + Y + ' ]' );
+        }
     </script>
 </body>
 </html>
