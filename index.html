@@ -31,6 +31,8 @@
 { "colorname" : "White","code":"#FFFFFF"}];
         var urlParams = new URLSearchParams(window.location.search);
             log("Init");
+            var  isready = true;
+            var synth = window.speechSynthesis;
             var X = document.documentElement.clientWidth;
             var Y = document.documentElement.clientHeight;
           
@@ -70,14 +72,20 @@
             }
 
             function speech(txt) {
-            let synth = window.speechSynthesis;
+             isready = false;
             let utterThis = new SpeechSynthesisUtterance(txt);
             synth.speak(utterThis);
+                utterThis.onend = function(event) {
+                console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
+                    isready = true;
+              }
             }
                 
-
+            
         function drawcircles() {
-
+           
+            if(!isready)
+                return;
 
             log("drawcircles");
             clear();
