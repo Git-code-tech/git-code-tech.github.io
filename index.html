@@ -83,7 +83,7 @@
             clear();
 
             let t0 = performance.now();
-            let NOOFCIRCLES = getRndInteger(0, 50);
+            let NOOFCIRCLES = getRndInteger(0, 20);
             document.getElementById("btn_dc").value = "(" + NOOFCIRCLES + ")";
             for (let qw = 0; qw < NOOFCIRCLES; qw++) {
                 Squrs.push(createaRandomnumber());
@@ -190,7 +190,7 @@
                 setInterval(getcolors, 5000);
             }
             else{
-            setInterval(drawcircles, 3000);
+            setInterval(drawcircles, 1000);
             }
         }
 
