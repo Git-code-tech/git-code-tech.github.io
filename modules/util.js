@@ -12,4 +12,4 @@ function getParameterByName(name, url = window.location.href) {
 function log(msg) {
    console.log("-->" +  msg);
 }
-export { getRndInteger, log };
+export { getRndInteger, log, getParameterByName };
