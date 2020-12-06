@@ -86,10 +86,10 @@ function getRandomnShape(radius) {
     tempShapes.push(new Rectangle(radius));
     tempShapes.push(new Pentagon(radius));
     tempShapes.push(new Hexagon(radius));
-    tempShapes.push(new Heptagon(radius));
-    tempShapes.push(new Octagon(radius));
-    tempShapes.push(new Nanogon(radius));
-    tempShapes.push(new Decagon(radius));
+    //tempShapes.push(new Heptagon(radius));
+   // tempShapes.push(new Octagon(radius));
+   // tempShapes.push(new Nanogon(radius));
+   // tempShapes.push(new Decagon(radius));
     tempShapes.push(new Rhambus(radius));
     //tempShapes.push(new Star(radius));
     return tempShapes[util.getRndInteger(0, tempShapes.length - 1)];
