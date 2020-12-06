@@ -51,8 +51,10 @@ baseobj = {
         else {
             myCanvas.clear();
         }
-        let shape = shapes.draw(myCanvas);
-        spch.speech(shape.shapeinfo);
+         varsetinterval = window.setInterval(function () {
+              let shape = shapes.draw(myCanvas);
+              spch.speech(shape.shapeinfo); }, 10000);
+      
         //config.readytotalk(false);
     }
     , createColors: function () {
