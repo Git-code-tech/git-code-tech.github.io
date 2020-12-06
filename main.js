@@ -4,18 +4,22 @@ import * as config from './modules/config.js';
 import * as util from './modules/util.js';
 import * as shapes from './modules/shapes.js';
 import * as spch from './modules/speech.js';
-
+import * as colors from './modules/colors.js';
 let myCanvas;
 let baseobj = {};
 let varsetinterval;
 baseobj = {
     init: function (tpe) {
         console.log("Start");
-        if (tpe != "Shapes") {
-            varsetinterval = window.setInterval(function () { baseobj.createCircles(); }, 3000);
+        if (tpe == "Shapes") {
+            baseobj.createShapes();         
         }
-        else {
-            varsetinterval = window.setInterval(function () { baseobj.createShapes(); }, 5000);
+        else if (tpe == 'Color') {
+            baseobj.createColors();        
+        }
+        else if (tpe=='dots'){
+            varsetinterval = window.setInterval(function () { baseobj.createCircles(); }, 3000);
+            //varsetinterval = window.setInterval(function () { baseobj.createShapes(); }, 5000);
         }
     },
     stop: function () {
@@ -41,13 +45,28 @@ baseobj = {
         }
     },
     createShapes: function () {
-        let info = "A square is a polygon with 4 sides of equal length and 4 right angle corners (90 degree corners). Because it has 4 sides of equal length, a square is a regular quadrilateral. A square is also a rectangle with equal sides and a rhombus with right angles. ... A square has 4 lines of reflectional symmetry."
-        if (config.readytotalkvar) {
-            let draw = shapes.draw(myCanvas);
-            console.log('--> ' + nocir);
-            spch.speech(info);
-            config.readytotalk(false);
+        if (!myCanvas) {
+            myCanvas = cvs.crte('target', config.X, config.Y);
         }
+        else {
+            myCanvas.clear();
+        }
+        let shape = shapes.draw(myCanvas);
+        spch.speech(shape.shapeinfo);
+        //config.readytotalk(false);
+    }
+    , createColors: function () {
+        if (!myCanvas) {
+            myCanvas = cvs.crte('target', config.X, config.Y);
+        }
+        else {
+            myCanvas.clear();
+        }
+        varsetinterval = window.setInterval(function () {
+            let colorcode = colors.draw(myCanvas);
+            spch.speech(colorcode.colorname); }, 3000);
+     
+        //config.readytotalk(false);
     }
 }
 

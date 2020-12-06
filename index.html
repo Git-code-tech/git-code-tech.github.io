@@ -16,15 +16,16 @@
             background-color: white;
         }
         .Canvasbackgroundcolor{
-            background-color:white;
+            /*background-color:indianred;*/
         }
     </style>
     <script type="module" src="main.js"></script>
 </head>
-<body class="bd">
+<body id="bdy" class="bd">
     <div class="container-fluid">
         <input type="button" id="btn_dc" value=" Dots " class="btn-s btn-sm left" />&nbsp;
         <input type="button" id="btn_shp" value=" Shapes " class="btn-s btn-sm left" />&nbsp;
+        <input type="button" id="btn_clr" value=" Colors " class="btn-s btn-sm left" />&nbsp;
         <input type="button" id="btn_stp" value=" X " class="btn-s btn-sm btn-danger" style="float:right;" />
     </div>
     <div class="container" id="target">
@@ -39,14 +40,23 @@
         });
         document.querySelector('#btn_stp').addEventListener('click', () => {
             import('./main.js').then(({ baseobj }) => {
+                document.querySelector('#bdy').style.ckgroundColor = 'white';
                 window.baseobj = baseobj;
                 window.baseobj.stop();
             });
         });
         document.querySelector('#btn_shp').addEventListener('click', () => {
             import('./main.js').then(({ baseobj }) => {
+                document.querySelector('#bdy').style.ckgroundColor = 'white';
                 window.baseobj = baseobj;
                 window.baseobj.init("Shapes");
+            });
+        });
+        document.querySelector('#btn_clr').addEventListener('click', () => {
+            import('./main.js').then(({ baseobj }) => {
+                document.querySelector('#bdy').style.ckgroundColor = 'Black';
+                window.baseobj = baseobj;
+                window.baseobj.init("Color");
             });
         });
         function getcolors() {
