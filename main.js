@@ -53,7 +53,7 @@ baseobj = {
         }
          varsetinterval = window.setInterval(function () {
               let shape = shapes.draw(myCanvas);
-              spch.speech(shape.shapeinfo); }, 10000);
+              spch.speech(shape.shapeinfo); }, 5000);
       
         //config.readytotalk(false);
     }
