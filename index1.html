@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="utf-8" />
+    <title>philps hue</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg.js" integrity="sha512-2B4yJ2DGhmYITzY51PcSK5pxQilqi1Cl3wgI8dq8phWjbVAw9SmcaTZp+QsSCdV/xKkxttyYolU0usNNG1ICbQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" type="text/javascript"></script>
+    <script src="modules/colormodel.js"></script>
+
+</head>
+<body style="padding:20px;">
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <h1>Colors</h1>
+        <input type="text" ng-model="query" placeholder="... filter">
+        <input type="button" id="btnget" ng-click="runcolors()" value="Run" />
+
+
+        <textarea rows="5" cols="100" ng-model="response">&nbsp;</textarea>
+
+        <div ng-repeat="x in colorsmod | filter : query" style="margin:5px;">
+            <a href="#" ng-click="lighton(x)">{{x.colorname}}</a>
+        </div>
+        <input type="button" id="btnget" ng-click="myfunction()" value="ok" />
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $scope.colorsmod = colors;
+            $scope.myfunction = function () {
+                alert('Test');
+                $scope.callurl($http);
+            }
+            $scope.runcolors = function () {
+                console.log('Test' + $scope.query);
+                const result = $scope.colorsmod.filter(s => s.colorname.includes($scope.query));
+                console.log(result);
+                angular.forEach(result, function (value, key) {
+                    console.log(value + "," + key);
+                    $scope.lighton(value);
+                    $scope.sleep(2000);
+                   
+                });               
+            }
+
+            $scope.sleep = function (t) {
+                const start = Date.now();
+                while (Date.now() - start < t);
+            }
+            $scope.lighton = function (clr) {
+                console.log(JSON.stringify(clr));
+                console.log("{ xy: " + JSON.stringify(clr.xy) + "}")
+                $http.put("https://192.168.4.25/api/G0Cr6Ky2bD7coC8FkmRWau8Egwqoa0NljCY9LMOC/groups/11/action",
+                    { xy: clr.xy }, { 'Content-Type': 'application/json' }).then(function mySuccess(response) {
+                        console.log(JSON.stringify(response.data));
+                        $scope.response = JSON.stringify(response.data);
+                    }, function myError(response) {
+                        $scope.response = response.statusText;
+                    });
+            }
+            $scope.callurl = function () {
+                alert('Test1');
+                $http({
+                    method: "GET",
+                    url: "https://192.168.4.25/api/G0Cr6Ky2bD7coC8FkmRWau8Egwqoa0NljCY9LMOC/groups/11"
+                }).then(function mySuccess(response) {
+                    console.log(JSON.stringify(response.data));
+                    $scope.response = JSON.stringify(response.data);
+                }, function myError(response) {
+                    $scope.response = response.statusText;
+                });
+            }
+        });
+
+    </script>
+
+</body>
+</html>
