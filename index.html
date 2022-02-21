@@ -29,10 +29,9 @@
         }
             function oninputcng() {
                 var text = document.getElementById('text')
-                alert(text);
                 var image = document.getElementsByClassName("img");
-                image.src = "/imgs/" + text + ".jpg"
-                alert(image)
+                image.src = "/imgs/" + text.value + ".jpg"
+                console.log(image.src)
 
             }
     </script>
