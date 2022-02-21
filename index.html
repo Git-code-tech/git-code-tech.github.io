@@ -17,6 +17,13 @@
             text-transform: uppercase;
             max-height:100px;
         }
+        .img1{
+                width:500px;
+            height: 500px;
+             min-height:400px;
+             object-fit: contain;
+              image-rendering: pixelated;
+        }
     </style>
     <script>
         window.onload = function () {
@@ -45,7 +52,7 @@
                 <textarea id="text" rows="1" cols="20" class="textst" oninput="oninputcng();"></textarea>
             </div>
             <div class="row  m-0">
-                <img id="imgs" class="img img-fluid img-responsive img-thumbnil" />
+                <img id="imgs" class="img img-thumbnil img1" />
             </div>
     </div>
 </body>
