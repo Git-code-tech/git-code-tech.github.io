@@ -27,18 +27,25 @@
             var text = document.getElementById('text')
             text.focus()
         }
-            function oninputcng() {
-                var text = document.getElementById('text')
-                var image = document.getElementsByClassName("img");
-                image.src = "https://git-code-tech.github.io/imgs/" + text.value.toUpperCase() + ".jpg"
-                console.log(image.src)
 
+        function refreshImage(imgURLpart) {
+            if (imgURLpart) {
+                // create a new timestamp 
+                var timestamp = new Date().getTime();
+                var el = document.getElementById("imgs");
+                var queryString = "?t=" + timestamp;
+                el.src = "https://git-code-tech.github.io/imgs/" + imgURLpart + ".jpg" + queryString;
+            }
+        }
+            function oninputcng() {
+                var text = document.getElementById('text');
+                refreshImage(text.value.toUpperCase());
             }
     </script>
 </head>
 <body>
-    <table border="1" cellpadding="4" cellspacing="4">
-        <tr><td><textarea id="text" rows="1" cols="20" class="textst" oninput="oninputcng()"></textarea></td></tr>
+    <table  cellpadding="4" cellspacing="1" width="80%">
+        <tr><td><textarea id="text" rows="1" cols="20" class="textst" oninput="oninputcng();"></textarea></td></tr>
         <tr><td><img id="imgs" class="img" /></td></tr>
     </table>
 
