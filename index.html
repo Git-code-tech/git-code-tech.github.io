@@ -15,12 +15,8 @@
             overflow: auto;
             font-size:100px;
             text-transform: uppercase;
-            max-height:100px;
-            width:90%;
         }
         .img1{
-             width:90%;
-             height: 90%;
              object-fit: contain;
              image-rendering: pixelated;
         }
@@ -50,10 +46,10 @@
    <div class="container-fluid text-center">
         <div class="row">
             <div class="col-sm-4">
-                <textarea id="text" rows="10" cols="30" class="textst" oninput="oninputcng();"></textarea>
+                <textarea id="text" rows="10" cols="30" class="form-control textst" oninput="oninputcng();"></textarea>
             </div>
             <div class="col-sm-8">
-                <img id="imgs" class="img img-thumbnil img-responsive img1" />
+                <img id="imgs" class="img img-fluid img-thumbnil img-responsive img1" />
             </div>
         </div>
     </div>
