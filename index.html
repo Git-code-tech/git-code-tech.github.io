@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Try</title>
+<script>
+window.onload=function(){
+  var text = document.getElementById('text')
+  text.focus()
+
+  window.onhashchange = function() {
+    text.focus()
+  }
+</script>
+</head>
+<body>
+
+<textarea id="text" rows="30" cols="50" style="font-family:Times New Roman;color:red;white-space:pre-wrap;letter-spacing:5px; overflow:auto;font-size:100px; text-transform: uppercase;"></textarea>
+
+</body>
+</html>
+
+
