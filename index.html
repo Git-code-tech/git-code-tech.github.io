@@ -30,7 +30,7 @@
             function oninputcng() {
                 var text = document.getElementById('text')
                 var image = document.getElementsByClassName("img");
-                image.src = "https://git-code-tech.github.io/imgs/" + text.value + ".jpg"
+                image.src = "https://git-code-tech.github.io/imgs/" + text.value.toUpperCase() + ".jpg"
                 console.log(image.src)
 
             }
