@@ -67,7 +67,8 @@ class Demo {
     calculate(origin, showShadows) {
         import('./src/Ephemeris.js').then((module) => {
             const ephemeris = new module.default({ ...origin, calculateShadows: showShadows });
-            //console.log('EPHEMERIS RESULTS FOR ${this.dateInput.value} -- ${this.timeInput.value} UTC}', ephemeris);
+            //debugger;
+            //console.log('EPHEMERIS RESULTS FOR ${this.dateInput.value} -- ${this.timeInput.value} UTC}', ephemeris.Results);
             //this.displayvalues(ephemeris, showShadows);
             this.texar.value += '\r\n'+ ephemeris.getString();
         });
