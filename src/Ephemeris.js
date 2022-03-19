@@ -132,7 +132,7 @@ export default class Ephemeris {
                 _valu += result.key +","+ R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude + ",";
             }
         });
-        var rahu =   "Rahu" + "," + Math.round(this.moon.orbit.meanAscendingNode.apparentLongitude,2);
+        var rahu =   "Rahu" + "," +this.moon.orbit.meanAscendingNode.apparentLongitude;
         var moon = "," + this.moon.position.shapeDirectionString + "-" + this.moon.position.shapeString + "-" + this.moon.position.quarterApproximationDirectionString  + "-" + this.moon.position.illuminatedFraction + "-" + this.moon.position.phaseDecimal  + "-" + this.moon.orbit.meanDescendingNode.apparentLongitude;
         _valu += rahu + moon;
         //console.log(_valu);
