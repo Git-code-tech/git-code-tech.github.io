@@ -1,4 +1,4 @@
-class Demo {
+class Demo {   
     constructor() {
         this.form = document.querySelector('#form')
         this.dateInput = document.querySelector('#date')
@@ -16,6 +16,7 @@ class Demo {
         this.from = document.querySelector('#from');
         this.to = document.querySelector('#to');
         this.count = 1;
+        this.total = 0;
     }
     handleSubmit(e) {
         e.preventDefault()      
@@ -24,6 +25,8 @@ class Demo {
     }
 
     getdates(from, to) {
+        this.count = 0;
+        this.total = 0;
         var daysOfYear = [];
 
         var parts = from.split('-');
@@ -35,15 +38,15 @@ class Demo {
         var tod = new Date(parts1[0], parts1[1] - 1, parts1[2]);
 
         //console.log(fromd + "," + tod);
-        for (var d = new Date(fromd.getFullYear(), fromd.getMonth(), fromd.getDate()); d <= tod; d.setDate(d.getDate() + 1)) {
+        for (var d = new Date(fromd.getFullYear(), fromd.getMonth(), fromd.getDate()); d < tod; d.setDate(d.getDate() + 1)) {
             //console.log(d);
             daysOfYear.push(new Date(d));
         }
+        this.total = daysOfYear.length;
         return daysOfYear;
     }
 
     loopthru(daysOfYear) {
-        var count = 0;
         daysOfYear.forEach(element => {
             var yr = element.getUTCFullYear();
             var mon = element.getUTCMonth();
@@ -67,10 +70,12 @@ class Demo {
     calculate(origin, showShadows) {
         import('./src/Ephemeris.js').then((module) => {
             const ephemeris = new module.default({ ...origin, calculateShadows: showShadows });
-            //debugger;
+            debugger;
             //console.log('EPHEMERIS RESULTS FOR ${this.dateInput.value} -- ${this.timeInput.value} UTC}', ephemeris.Results);
             //this.displayvalues(ephemeris, showShadows);
-            this.texar.value += '\r\n'+ ephemeris.getString();
+            this.texar.value += '\r\n' + ephemeris.getString();
+            this.count = this.count + 1;
+            console.log("[" + this.count.toString() + "/" + this.total.toString() + "]");
         });
     }
 
@@ -121,9 +126,10 @@ class Demo {
                     R = R + '2';
                 }
             }
-            _valu += result.key + R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude.toFixed(4) + "," + result.position.apparentLongitudeString + ",";
+            _valu += result.key + "," + R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude.toFixed(4) + "," + result.position.apparentLongitudeString + ",";
         });
-        var moon = "(" + ephemeris.moon.position.shapeDirectionString + "," + ephemeris.moon.position.shapeString + "," + ephemeris.moon.position.quarterApproximationDirectionString + "," + (ephemeris.moon.position.quarterApproximationString || '${ephemeris.moon.position.shapeDirectionString} ${ephemeris.moon.position.shapeString}') + "," + ephemeris.moon.position.illuminatedFraction + "," + ephemeris.moon.position.phaseDecimal + "," + ephemeris.moon.orbit.meanAscendingNode.apparentLongitude + "," + ephemeris.moon.orbit.meanDescendingNode.apparentLongitude + "," + ephemeris.moon.orbit.meanPerigee.apparentLongitude + "," + ephemeris.moon.orbit.meanApogee.apparentLongitude + ")";
+        var moon = ephemeris.moon.position.shapeDirectionString + "-" + ephemeris.moon.position.shapeString + "-" + ephemeris.moon.position.quarterApproximationDirectionString + ",";
         _valu += moon;
     }
+
 }
