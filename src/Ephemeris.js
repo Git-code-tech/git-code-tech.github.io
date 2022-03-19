@@ -129,10 +129,10 @@ export default class Ephemeris {
                 }
             }
             if (!(result.key != 'chiron') || (result.key != 'sirius') || (result.key != 'neptune') || (result.key != 'pluto')) {
-                _valu += result.key +","+ R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude + ",";
+                _valu += result.key +","+ R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + Math.round(result.position.apparentLongitude,2) + ",";
             }
         });
-        var rahu =   "Rahu" + "," + this.moon.orbit.meanAscendingNode.apparentLongitude;
+        var rahu =   "Rahu" + "," + Math.round(this.moon.orbit.meanAscendingNode.apparentLongitude,2);
         var moon = "," + this.moon.position.shapeDirectionString + "-" + this.moon.position.shapeString + "-" + this.moon.position.quarterApproximationDirectionString  + "-" + this.moon.position.illuminatedFraction + "-" + this.moon.position.phaseDecimal  + "-" + this.moon.orbit.meanDescendingNode.apparentLongitude;
         _valu += rahu + moon;
         //console.log(_valu);
