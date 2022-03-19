@@ -1,3 +1,5 @@
+
+
 import { kepler } from './utilities/kepler.js'
 import Body from './classes/Body.js'
 import Sol from './classes/Sol.js'
@@ -117,8 +119,8 @@ export default class Ephemeris {
     getString() {
         var _valu = this.Observer.year + "/" + (this.Observer.month + 1) + "/" + this.Observer.day + ",";
         this.Results.forEach(result => {
-            var R = (result.motion.isRetrograde ? '-R' : '');
-            if (R == "-R") {
+            var R = (result.motion.isRetrograde ? 'R' : '');
+            if (R == "R") {
                 if (result.motion.withinPreRetrogradeShadow) {
                     R = R + '1';
                 }
@@ -126,12 +128,14 @@ export default class Ephemeris {
                     R = R + '2';
                 }
             }
-            _valu += result.key + R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude + ",";
+            if (!(result.key != 'chiron') || (result.key != 'sirius') || (result.key != 'neptune') || (result.key != 'pluto')) {
+                _valu += result.key +","+ R + "," + ((result.type == "heliocentric" || result.type == "sun") ? result.position.constellation : "") + "," + result.position.apparentLongitude + ",";
+            }
         });
         var rahu =   "Rahu" + "," + this.moon.orbit.meanAscendingNode.apparentLongitude;
-        var moon = "," + this.moon.position.shapeDirectionString + "," + this.moon.position.shapeString + "," + this.moon.position.quarterApproximationDirectionString  + "," + this.moon.position.illuminatedFraction + "," + this.moon.position.phaseDecimal  + "," + this.moon.orbit.meanDescendingNode.apparentLongitude;
+        var moon = "," + this.moon.position.shapeDirectionString + "-" + this.moon.position.shapeString + "-" + this.moon.position.quarterApproximationDirectionString  + "-" + this.moon.position.illuminatedFraction + "-" + this.moon.position.phaseDecimal  + "-" + this.moon.orbit.meanDescendingNode.apparentLongitude;
         _valu += rahu + moon;
-        console.log(_valu);
+        //console.log(_valu);
         return _valu;
     }
 }
